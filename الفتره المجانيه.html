@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>الفترة التجريبية</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    }
+
+    .trial-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    #countdown {
+      font-size: 28px;
+      font-weight: bold;
+      color: #dc3545;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #343a40;
+    }
+
+    p {
+      font-size: 18px;
+      color: #495057;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button:disabled {
+      background-color: #6c757d;
+      cursor: not-allowed;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="trial-container" id="startPage">
+    <h1>🎉 مرحباً بك في الفترة التجريبية</h1>
+    <p>اضغط على الزر أدناه لبدء الوصول المجاني لمدة ساعة واحدة! 🌟</p>
+    <button id="startBtn">ابدأ الفترة التجريبية 🚀</button>
+  </div>
+
+  <div class="trial-container" id="trialPage" style="display:none;">
+    <div id="countdown">01:00:00</div>
+    <h1>الفترة التجريبية</h1>
+    <p>استمتع بالوصول لكل المحتوى المجاني أثناء الساعة التجريبية! 🌟</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6vGkZkpzaH8" frameborder="0" allowfullscreen></iframe>
+    <br><br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/yzZQ6wUd75c" frameborder="0" allowfullscreen></iframe>
+    <button id="subscribeBtn" style="display:none;">اشترك الآن 💳</button>
+  </div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const startPage = document.getElementById('startPage');
+    const trialPage = document.getElementById('trialPage');
+    const countdownEl = document.getElementById('countdown');
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    let countdownInterval;
+
+    function startCountdown(endTime) {
+      clearInterval(countdownInterval);
+      countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = Math.floor((endTime - now) / 1000);
+
+        if (timeLeft > 0) {
+          const hours = Math.floor(timeLeft / 3600);
+          const minutes = Math.floor((timeLeft % 3600) / 60);
+          const seconds = timeLeft % 60;
+
+          countdownEl.textContent =
+            `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        } else {
+          clearInterval(countdownInterval);
+          countdownEl.textContent = "⏰ انتهت الفترة التجريبية";
+          subscribeBtn.style.display = "inline-block";
+          localStorage.setItem("trialExpired", "true");
+        }
+      }, 1000);
+    }
+
+    window.onload = () => {
+      const trialEnd = localStorage.getItem("trialEnd");
+      const trialExpired = localStorage.getItem("trialExpired");
+
+      if (trialExpired === "true") {
+        document.body.innerHTML = `
+          <div class="trial-container">
+            <h1>⚠️ لقد اشتركت في هذا العرض من قبل</h1>
+            <p>لا يمكنك تفعيل الفترة التجريبية مرة أخرى.</p>
+            <button onclick="alert('تحويل لصفحة الاشتراك')">اشترك الآن 💳</button>
+          </div>
+        `;
+      } else if (trialEnd) {
+        const now = new Date().getTime();
+        if (now < trialEnd) {
+          startPage.style.display = "none";
+          trialPage.style.display = "block";
+          startCountdown(trialEnd);
+        } else {
+          localStorage.setItem("trialExpired", "true");
+          document.body.innerHTML = `
+            <div class="trial-container">
+              <h1>⚠️ لقد اشتركت في هذا العرض من قبل</h1>
+              <p>لا يمكنك تفعيل الفترة التجريبية مرة أخرى.</p>
+              <button onclick="alert('تحويل لصفحة الاشتراك')">اشترك الآن 💳</button>
+            </div>
+          `;
+        }
+      }
+    };
+
+    startBtn.addEventListener('click', () => {
+      const now = new Date().getTime();
+      const endTime = now + (60 * 60 * 1000); // ساعة
+      localStorage.setItem("trialEnd", endTime);
+
+      startPage.style.display = "none";
+      trialPage.style.display = "block";
+      startCountdown(endTime);
+    });
+
+    subscribeBtn.addEventListener('click', () => {
+      alert("تم تحويلك لصفحة الاشتراك!");
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+
+ 
+ header{ 
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-color: black;
+   
+}
+footer{
+    background-color: rgb(0, 234, 0);
+    color: black;
+}
+
+   body {
+    text-transform: capitalize;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      direction: rtl;
+      
+        
+        word-spacing: 5px;
+    }
+    L{
+        text-align: center;
+        background-color: rgb(from color r g b);
+        color: greenyellow;
+    }
+   a{
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;  
+   }
+           
