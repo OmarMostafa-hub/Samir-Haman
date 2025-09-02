@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تواصل معنا</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+
+    .contact-container {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      color: #555;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .social-links {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .whatsapp {
+      background-color: #25D366;
+    }
+
+    .facebook {
+      background-color: #3b5998;
+    }
+
+    .privacy-note {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <section class="contact-container">
+    <h1>📬 تواصل معنا</h1>
+    <p>نحن هنا لمساعدتك في أي وقت. أرسل لنا استفسارك أو تواصل مباشرة عبر واتساب أو فيسبوك.</p>
+
+    <form>
+      <label for="name">الاسم الكامل:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">البريد الإلكتروني:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">رسالتك:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">إرسال</button>
+    </form>
+
+    <div class="social-links">
+      <h2>📱 تواصل عبر وسائل التواصل</h2>
+      <a href="https://wa.me/201004204497?text=مرحبا،%20أرغب%20في%20الاستفسار%20عن%20الدورة" target="_blank" class="whatsapp">
+        واتساب برسالة تلقائية
+      </a>
+      <a href="https://www.facebook.com/yourpage" target="_blank" class="facebook">
+        فيسبوك
+      </a>
+    </div>
+
+    <div class="privacy-note">
+      🔒 جميع البيانات يتم التعامل معها بسرية وفقًا لسياسة الخصوصية الخاصة بنا.
+    </div>
+  </section>
+</body>
+</html>
